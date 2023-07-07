@@ -34,7 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('usuarios')->group(function () {
         Route::get('/profile', [UserController::class, 'obtenerDatosUsuarioAutenticado']);
         Route::get('/', [UserController::class, 'index']);
-        Route::post('/{userId}/roles/{roleId}', [UserController::class, 'assignRoleToUser']);
+       
     });
 
 
@@ -51,9 +51,9 @@ Route::middleware('auth:sanctum')->group(function () {
         // Eliminar un empleado específico
         Route::delete('/{empleado}', [EmpleadoController::class, 'destroy']);
         // Ruta para obtener el departamento de un empleado
-        Route::get('/{employeeId}/departamentos', [EmpleadoController::class, 'getDepartment']);
+       // Route::get('/{employeeId}/departamentos', [EmpleadoController::class, 'getDepartment']);
         // Ruta para obtener el cargo de un empleado
-        Route::get('/{employeeId}/cargo', [EmpleadoController::class, 'getPosition']);
+      //  Route::get('/{employeeId}/cargo', [EmpleadoController::class, 'getPosition']);
     });
 
     // Rutas relacionadas con los departamentos
@@ -69,7 +69,7 @@ Route::middleware('auth:sanctum')->group(function () {
         // Eliminar un departamento específico
         Route::delete('/{id}', [DepartamentoController::class, 'destroy']);
         // Ruta para obtener los empleados de un departamento
-        Route::get('/{departmentId}/empleados', [DepartamentoController::class, 'getEmployees']);
+     //   Route::get('/{departmentId}/empleados', [DepartamentoController::class, 'getEmployees']);
     });
 
     // Rutas relacionadas con los cargos
