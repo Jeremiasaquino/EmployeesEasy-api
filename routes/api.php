@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Api\HorarioController;
 use App\Http\Controllers\Api\EmpleadoController;
 use App\Http\Controllers\Api\PosicionController;
@@ -18,9 +19,16 @@ use App\Http\Controllers\Api\DepartamentoController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+// Ruta para iniciar sesión
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+
 
 // Rutas protegidas por el middleware de autenticación 'auth:sanctum'
-//Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
+
+    // Ruta para cerrar sesión
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 
     // Ruta para obtener los datos del usuario autenticado
     Route::prefix('usuarios')->group(function () {
@@ -95,4 +103,4 @@ use App\Http\Controllers\Api\DepartamentoController;
         // Ruta para obtener los empleados de una hora
         Route::get('/{horarioId}/empleados', [HorarioController::class, 'getEmployees']);
     });
-//});
+});
